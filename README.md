@@ -41,6 +41,9 @@ The database consists of **four main tables**:
 
 
 ---
+## 📊 Analytical SQL Queries
+
+```sql
 /* --------------------------------------------------------
    1️⃣  Average Marks of Each Student
    -------------------------------------------------------- */
@@ -82,6 +85,10 @@ JOIN Marks m
     ON s.student_id = m.student_id
 GROUP BY s.student_name
 ORDER BY average_marks DESC;
+
+
+
+
 
 
 
