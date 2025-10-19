@@ -20,6 +20,10 @@ The database consists of **four main tables**:
 
 ---
 
+
+
+
+
 ## 🗃️ SQL Files in This Project
 | File | Purpose |
 |------|----------|
@@ -86,6 +90,20 @@ JOIN Marks m
 GROUP BY s.student_name
 ORDER BY average_marks DESC;
 
+
+---
+
+### 🧠 Why This Works
+- The triple backticks (\`\`\`sql … \`\`\`) tell GitHub to **treat this as code** (so line breaks & colors appear).  
+- Each query remains neatly separated with comments (`/* ... */`).  
+- Markdown doesn’t break your SQL formatting anymore.  
+
+---
+
+If you paste this version into your **README.md**, it will look **exactly like real SQL code** — clean, colored, and readable.  
+
+Would you like me to add a **title + explanation block** above this (for GitHub README use)? e.g.  
+> “This section contains analytical SQL queries to evaluate student performance.”
 
 
 
