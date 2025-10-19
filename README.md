@@ -35,6 +35,7 @@ The database consists of **four main tables**:
 ---
 
 ## 🧠 Key SQL Concepts Used
+
 - **Database Design (DDL):** `CREATE`, `ALTER`, `DROP`
 - **Data Manipulation (DML):** `INSERT`, `UPDATE`, `DELETE`
 - **Joins:** `INNER JOIN`, `LEFT JOIN`
@@ -42,6 +43,13 @@ The database consists of **four main tables**:
 - **Clauses:** `GROUP BY`, `ORDER BY`, `LIMIT`
 - **Subqueries & Aliasing**
 
+---
+
+## 📊 Analytical SQL Queries
+
+Below are the key analytical queries used to study student performance — formatted correctly for GitHub.
+
+```sql
 /* --------------------------------------------------------
    1️⃣  Average Marks of Each Student
    -------------------------------------------------------- */
@@ -83,7 +91,3 @@ JOIN Marks m
     ON s.student_id = m.student_id
 GROUP BY s.student_name
 ORDER BY average_marks DESC;
-
-
-
----
