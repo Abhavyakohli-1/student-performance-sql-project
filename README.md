@@ -1,98 +1,85 @@
-# student-performance-sql-project
-SQL project analyzing student performance and academic insights using MySQL
-# 🎓 Student Performance Database Analysis using SQL
+CREATE DATABASE sales_insights;
+USE sales_insights;
 
-## 📘 Overview
-This project demonstrates how to design and analyze a **student performance database** using **MySQL**.  
-It includes tables for students, subjects, marks, and attendance — and performs SQL queries to extract meaningful academic insights such as top-performing students, subject averages, and attendance correlations.
+-- Create customers table
+CREATE TABLE customers (
+    customer_id INT PRIMARY KEY,
+    customer_name VARCHAR(100),
+    region VARCHAR(50),
+    country VARCHAR(50)
+);
 
----
+-- Create products table
+CREATE TABLE products (
+    product_id INT PRIMARY KEY,
+    product_name VARCHAR(100),
+    category VARCHAR(50),
+    price DECIMAL(10,2)
+);
 
-## 🧱 Database Design
-The database consists of **four main tables**:
+-- Create sales table
+CREATE TABLE sales (
+    sale_id INT PRIMARY KEY,
+    customer_id INT,
+    product_id INT,
+    sale_date DATE,
+    quantity INT,
+    total_amount DECIMAL(10,2),
+    FOREIGN KEY (customer_id) REFERENCES customers(customer_id),
+    FOREIGN KEY (product_id) REFERENCES products(product_id)
+);
 
-| Table Name | Description |
-|-------------|--------------|
-| `Students` | Contains student details like ID, name, gender, class, and age |
-| `Subjects` | Contains subject names and their IDs |
-| `Marks` | Records marks obtained by each student in each subject |
-| `Attendance` | Tracks total classes and classes attended by each student |
+CREATE DATABASE sales_insights;
+USE sales_insights;
 
----
+-- Create customers table
+CREATE TABLE customers (
+    customer_id INT PRIMARY KEY,
+    customer_name VARCHAR(100),
+    region VARCHAR(50),
+    country VARCHAR(50)
+);
 
+-- Create products table
+CREATE TABLE products (
+    product_id INT PRIMARY KEY,
+    product_name VARCHAR(100),
+    category VARCHAR(50),
+    price DECIMAL(10,2)
+);
 
+-- Create sales table
+CREATE TABLE sales (
+    sale_id INT PRIMARY KEY,
+    customer_id INT,
+    product_id INT,
+    sale_date DATE,
+    quantity INT,
+    total_amount DECIMAL(10,2),
+    FOREIGN KEY (customer_id) REFERENCES customers(customer_id),
+    FOREIGN KEY (product_id) REFERENCES products(product_id)
+);
 
+-- Customers
+INSERT INTO customers VALUES
+(1, 'Amit Sharma', 'North', 'India'),
+(2, 'John Doe', 'West', 'USA'),
+(3, 'Sana Khan', 'East', 'India'),
+(4, 'Mary Lee', 'South', 'Singapore');
 
+-- Products
+INSERT INTO products VALUES
+(101, 'Laptop', 'Electronics', 55000),
+(102, 'Smartphone', 'Electronics', 30000),
+(103, 'Tablet', 'Electronics', 20000),
+(104, 'Headphones', 'Accessories', 3000);
 
-## 🗃️ SQL Files in This Project
-| File | Purpose |
-|------|----------|
-| `create_database.sql` | Defines database schema and table creation |
-| `insert_data.sql` | Inserts sample records into all tables |
-| `queries_analysis.sql` | Contains all analytical SQL queries |
-| `conclusions.txt` | Summarizes final insights and findings |
+-- Sales
+INSERT INTO sales VALUES
+(1001, 1, 101, '2023-01-15', 1, 55000),
+(1002, 2, 102, '2023-02-10', 2, 60000),
+(1003, 3, 103, '2023-03-05', 1, 20000),
+(1004, 4, 104, '2023-03-18', 3, 9000),
+(1005, 1, 102, '2023-04-25', 1, 30000);
 
----
-
-## 🧠 Key SQL Concepts Used
-
-- **Database Design (DDL):** `CREATE`, `ALTER`, `DROP`
-- **Data Manipulation (DML):** `INSERT`, `UPDATE`, `DELETE`
-- **Joins:** `INNER JOIN`, `LEFT JOIN`
-- **Aggregations:** `AVG()`, `COUNT()`, `SUM()`
-- **Clauses:** `GROUP BY`, `ORDER BY`, `LIMIT`
-- **Subqueries & Aliasing**
-
-
-## 📊 Analytical SQL Queries
-
-Below are the key analytical queries used to study student performance — formatted correctly for GitHub.
-```sql
-/* --------------------------------------------------------
-   1️⃣  Average Marks of Each Student
-   -------------------------------------------------------- */
-SELECT 
-    s.student_name,
-    AVG(m.marks_obtained) AS avg_marks
-FROM Students s
-JOIN Marks m 
-    ON s.student_id = m.student_id
-GROUP BY s.student_name
-ORDER BY avg_marks DESC;
-
-
-/* --------------------------------------------------------
-   2️⃣  Top 3 Students by Average Marks
-   -------------------------------------------------------- */
-SELECT 
-    s.student_name,
-    AVG(m.marks_obtained) AS average_marks
-FROM Students s
-JOIN Marks m 
-    ON s.student_id = m.student_id
-GROUP BY s.student_name
-ORDER BY average_marks DESC
-LIMIT 3;
-
-
-/* --------------------------------------------------------
-   3️⃣  Average Marks + Attendance Percentage
-   -------------------------------------------------------- */
-SELECT 
-    s.student_name,
-    (a.classes_attended * 100.0 / a.total_classes) AS attendance_percentage,
-    AVG(m.marks_obtained) AS average_marks
-FROM Students s
-JOIN Attendance a 
-    ON s.student_id = a.student_id
-JOIN Marks m 
-    ON s.student_id = m.student_id
-GROUP BY s.student_name
-ORDER BY average_marks DESC;
-
-
-
-
-
----
 
