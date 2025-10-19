@@ -45,14 +45,12 @@ The database consists of **four main tables**:
 
 
 ---
-## 📊 Analytical SQL Queries
 
-```sql
 /* --------------------------------------------------------
    1️⃣  Average Marks of Each Student
    -------------------------------------------------------- */
 SELECT 
-    s.student_name, 
+    s.student_name,
     AVG(m.marks_obtained) AS avg_marks
 FROM Students s
 JOIN Marks m 
@@ -65,7 +63,7 @@ ORDER BY avg_marks DESC;
    2️⃣  Top 3 Students by Average Marks
    -------------------------------------------------------- */
 SELECT 
-    s.student_name, 
+    s.student_name,
     AVG(m.marks_obtained) AS average_marks
 FROM Students s
 JOIN Marks m 
@@ -89,26 +87,4 @@ JOIN Marks m
     ON s.student_id = m.student_id
 GROUP BY s.student_name
 ORDER BY average_marks DESC;
-
-
----
-
-### 🧠 Why This Works
-- The triple backticks (\`\`\`sql … \`\`\`) tell GitHub to **treat this as code** (so line breaks & colors appear).  
-- Each query remains neatly separated with comments (`/* ... */`).  
-- Markdown doesn’t break your SQL formatting anymore.  
-
----
-
-If you paste this version into your **README.md**, it will look **exactly like real SQL code** — clean, colored, and readable.  
-
-Would you like me to add a **title + explanation block** above this (for GitHub README use)? e.g.  
-> “This section contains analytical SQL queries to evaluate student performance.”
-
-
-
-
-
-
-
 
