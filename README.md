@@ -38,34 +38,52 @@ The database consists of **four main tables**:
 - **Clauses:** `GROUP BY`, `ORDER BY`, `LIMIT`
 - **Subqueries & Aliasing**
 
+
+
 ---
-
-
-## 📊 Example Analytical Queries
-
-### 1. Average Marks of Each Student
-```sql
-SELECT s.student_name, AVG(m.marks_obtained) AS avg_marks
+/* --------------------------------------------------------
+   1️⃣  Average Marks of Each Student
+   -------------------------------------------------------- */
+SELECT 
+    s.student_name, 
+    AVG(m.marks_obtained) AS avg_marks
 FROM Students s
-JOIN Marks m ON s.student_id = m.student_id
+JOIN Marks m 
+    ON s.student_id = m.student_id
 GROUP BY s.student_name
 ORDER BY avg_marks DESC;
 
-2. Top 3 Students by Average Marks
-SELECT s.student_name, AVG(m.marks_obtained) AS average_marks
+
+/* --------------------------------------------------------
+   2️⃣  Top 3 Students by Average Marks
+   -------------------------------------------------------- */
+SELECT 
+    s.student_name, 
+    AVG(m.marks_obtained) AS average_marks
 FROM Students s
-JOIN Marks m ON s.student_id = m.student_id
+JOIN Marks m 
+    ON s.student_id = m.student_id
 GROUP BY s.student_name
 ORDER BY average_marks DESC
 LIMIT 3;
 
 
-3. Average Marks + Attendance Percentage
-SELECT s.student_name,
-       (a.classes_attended * 100 / a.total_classes) AS attendance_percentage,
-       AVG(m.marks_obtained) AS average_marks
+/* --------------------------------------------------------
+   3️⃣  Average Marks + Attendance Percentage
+   -------------------------------------------------------- */
+SELECT 
+    s.student_name,
+    (a.classes_attended * 100.0 / a.total_classes) AS attendance_percentage,
+    AVG(m.marks_obtained) AS average_marks
 FROM Students s
-JOIN Attendance a ON s.student_id = a.student_id
-JOIN Marks m ON s.student_id = m.student_id
+JOIN Attendance a 
+    ON s.student_id = a.student_id
+JOIN Marks m 
+    ON s.student_id = m.student_id
 GROUP BY s.student_name
 ORDER BY average_marks DESC;
+
+
+
+
+
