@@ -42,14 +42,6 @@ The database consists of **four main tables**:
 - **Clauses:** `GROUP BY`, `ORDER BY`, `LIMIT`
 - **Subqueries & Aliasing**
 
-
-
----
-## 📊 Analytical SQL Queries
-
-Below are the main analytical queries used to study student performance — formatted for GitHub display.
-
-```sql
 /* --------------------------------------------------------
    1️⃣  Average Marks of Each Student
    -------------------------------------------------------- */
@@ -94,3 +86,4 @@ ORDER BY average_marks DESC;
 
 
 
+---
